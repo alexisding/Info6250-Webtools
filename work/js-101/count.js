@@ -15,9 +15,11 @@ function countLetterInSamePosition(baseWord, guess) {
 
 function countMatchingLetters(baseWord, guess) {
     let count = 0;
+    let matchingLetters = [];
     for(let i of baseWord) {
         for(let j of guess) {
-            if(i === j) {
+            if(i === j && !matchingLetters.includes(j)) {
+                matchingLetters.push(j);
                 count += 1;
             }
         }
