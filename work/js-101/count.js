@@ -3,11 +3,10 @@ const guesses = ['TREES', 'TEASE', 'START', 'STRAP', 'LEVEL', 'PARTS'];
 
 function countLetterInSamePosition(baseWord, guess) {
     let count = 0;
-    for(let i = 0; i < baseWord.length; i++) {
-        for(let j = 0; j < guess.length; j++) {
-            if(baseWord[i] === guess[j] && i === j) {
-                count += 1;
-            }
+    let minLength = Math.min(baseWord.length, guess.length);
+    for(let i = 0; i < minLength; i++) {
+        if(baseWord[i] === guess[i]) {
+            count += 1;
         }
     }
     return count;
@@ -15,19 +14,13 @@ function countLetterInSamePosition(baseWord, guess) {
 
 function countMatchingLetters(baseWord, guess) {
     let count = 0;
-    let matchingLetters = []; // a help array to store matching letters
-    let guessArr = guess.split(""); // convert string to array
-    for(let baseLetter of baseWord) {
-        // remove repeated letter for cases like "STREE" "TREES" -- 5 letter match, instead of 4
-        if(matchingLetters.includes(baseLetter)) {
-            let index = matchingLetters.indexOf(baseLetter);
-            matchingLetters.splice(index, 1);
-        }
-        for(let guessLetter of guessArr) {
-            if(baseLetter === guessLetter && !matchingLetters.includes(guessLetter)) {
-                matchingLetters.push(guessLetter);
+    let baseArr = baseWord.split(""); // convert string to array
+    for(let guessLetter of guess) {
+        for(let baseLetter of baseArr) {
+            if(guessLetter === baseLetter) {
                 count += 1;
-                guessArr.splice(guessArr.indexOf(guessLetter), 1); // remove matched letter to avoid repeated match
+                baseArr.splice(baseArr.indexOf(baseLetter), 1); // remove matched letters
+                break;
             }
         }
     }
