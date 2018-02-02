@@ -15,12 +15,19 @@ function countLetterInSamePosition(baseWord, guess) {
 
 function countMatchingLetters(baseWord, guess) {
     let count = 0;
-    let matchingLetters = [];
-    for(let i of baseWord) {
-        for(let j of guess) {
-            if(i === j && !matchingLetters.includes(j)) {
-                matchingLetters.push(j);
+    let matchingLetters = []; // a help array to store matching letters
+    let guessArr = guess.split(""); // convert string to array
+    for(let baseLetter of baseWord) {
+        // remove repeated letter for cases like "STREE" "TREES" -- 5 letter match, instead of 4
+        if(matchingLetters.includes(baseLetter)) {
+            let index = matchingLetters.indexOf(baseLetter);
+            matchingLetters.splice(index, 1);
+        }
+        for(let guessLetter of guessArr) {
+            if(baseLetter === guessLetter && !matchingLetters.includes(guessLetter)) {
+                matchingLetters.push(guessLetter);
                 count += 1;
+                guessArr.splice(guessArr.indexOf(guessLetter), 1); // remove matched letter to avoid repeated match
             }
         }
     }
