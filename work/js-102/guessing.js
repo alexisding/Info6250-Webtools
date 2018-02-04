@@ -37,27 +37,27 @@ console.log(`Found ${wordInfo.word} in ${history.count} turns`);
 
 // YOU MAY ADD YOUR OWN FUNCTIONS (ONLY FUNCTIONS) BELOW THIS
 function countSimilarLetters(guess, wordInfo) {
-	let count = 0;
-	let baseArr = wordInfo.word.split("");
-	for(let guessLetter of guess) {
-		for(let baseLetter of wordInfo.word) {
-			if(guessLetter === baseLetter) {
-				count += 1;
-				baseArr.splice(baseArr.indexOf(baseLetter), 1); // remove matched letters
-				break;
-			}
-		}
-	}
-	return count;
+  let count = 0;
+  let baseArr = wordInfo.word.split("");
+  for (let guessLetter of guess) {
+    for (let baseLetter of wordInfo.word) {
+      if (guessLetter === baseLetter) {
+        count += 1;
+        baseArr.splice(baseArr.indexOf(baseLetter), 1);
+        break;
+      }
+    }
+  }
+  return count;
 }
 
 function compareIfWon(wordInfo, guess) {
-  if(wordInfo.word.length === guess.length) {
-		for(let i = 0; i < wordInfo.word.length; i++) {
-			if(wordInfo.word[i] !== guess[i]) {
-				return false;
-			}
-		}
+  if (wordInfo.word.length === guess.length) {
+    for (let i = 0; i < wordInfo.word.length; i++) {
+      if (wordInfo.word[i] !== guess[i]) {
+        return false;
+      }
+    }
   }
   return true;
 }
@@ -90,9 +90,9 @@ function compareLetters( guess, wordInfo ) {
 
   // EDIT BELOW THIS
   result.won = compareIfWon(wordInfo, guess);
-	result.similar = countSimilarLetters(guess, wordInfo);
-	result.word = guess;
-	return result;
+  result.similar = countSimilarLetters(guess, wordInfo);
+  result.word = guess;
+  return result;
   // EDIT ABOVE THIS
 }
 
