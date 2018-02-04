@@ -43,8 +43,8 @@ function countSimilarLetters(guess, wordInfo) {
     for(let baseLetter of wordInfo.word) {
       if(guessLetter === baseLetter) {
         count += 1;
-        baseArr.splice(baseArr.indexOf(baseLetter), 1); // remove matched letters
-	    break;
+        baseArr.splice(baseArr.indexOf(baseLetter), 1);
+        break;
       }
     }
   }
