@@ -159,276 +159,276 @@ const message = document.querySelector('.message');
 const errorMessage = document.querySelector('.error-message');
 
 function begin() {
-	isBegin = true;
-	button.innerHTML = 'GUESS';
-	playerBaseWord = playerGuess.value;
-	computerBaseWord = computerPickWord(wordList);
-	console.log(computerBaseWord);
-	clear();
+  isBegin = true;
+  button.innerHTML = 'GUESS';
+  playerBaseWord = playerGuess.value;
+  computerBaseWord = computerPickWord(wordList);
+  console.log(computerBaseWord);
+  clear();
 }
 
 function guess() {
-	if (!isBegin) {
-		begin();
-	} else {
-		removeMessage();
-		count += 1;
-		computerGuess.value = computerPickGuess();
-		validatePlayerPickGuess();
-		compareIfWon();
-		playerSimilarLetters = countSimilarLetters(playerGuess.value, computerBaseWord);
-		computerSimilarLetters = countSimilarLetters(computerGuess.value, playerBaseWord);
-		ifWon();
-	}
+  if (!isBegin) {
+    begin();
+  } else {
+    removeMessage();
+    count += 1;
+    computerGuess.value = computerPickGuess();
+    validatePlayerPickGuess();
+    compareIfWon();
+    playerSimilarLetters = countSimilarLetters(playerGuess.value, computerBaseWord);
+    computerSimilarLetters = countSimilarLetters(computerGuess.value, playerBaseWord);
+    ifWon();
+  }
 }
 
 function ifWon() {
-	if (!computerWon && !playerWon) {
-		addToPlayerList(playerGuess.value);
-		addToComputerList(computerGuess.value);
-		addWrongMessage();
-		clear();
-	} else if (computerWon || playerWon) {
-		addToPlayerList(playerGuess.value);
-		addToComputerList(computerGuess.value);
-		addWonMessage();
-		playerGuess.setAttribute('disabled', 'disabled');
-		clear();
-		resetButton();
-	}
+  if (!computerWon && !playerWon) {
+    addToPlayerList(playerGuess.value);
+    addToComputerList(computerGuess.value);
+    addWrongMessage();
+    clear();
+  } else if (computerWon || playerWon) {
+    addToPlayerList(playerGuess.value);
+    addToComputerList(computerGuess.value);
+    addWonMessage();
+    playerGuess.setAttribute('disabled', 'disabled');
+    clear();
+    resetButton();
+  }
 }
 
 function resetGame() {
-	playerHistoryGuess = [];
-	computerHistoryGuess = [];
-	computerGuessedWords = [];
-	count = 0;
-	renderComputerList();
-	renderPlayerList();
-	playerWon = false;
-	computerWon = false;
-	isBegin = false;
-	button.innerHTML = 'BEGIN';
-	playerGuess.removeAttribute('disabled');
-	validatePlayerPickWord();
-	removeMessage();
-	removeInputErrorMessage();
-	clear();
-	clearComputerInput();
+  playerHistoryGuess = [];
+  computerHistoryGuess = [];
+  computerGuessedWords = [];
+  count = 0;
+  renderComputerList();
+  renderPlayerList();
+  playerWon = false;
+  computerWon = false;
+  isBegin = false;
+  button.innerHTML = 'BEGIN';
+  playerGuess.removeAttribute('disabled');
+  validatePlayerPickWord();
+  removeMessage();
+  removeInputErrorMessage();
+  clear();
+  clearComputerInput();
 }
 
 function computerPickWord(wordList) {
-	return wordList[Math.floor( Math.random() * wordList.length)];
+  return wordList[Math.floor( Math.random() * wordList.length)];
 }
 
 function validatePlayerPickWord() {
-	if(playerGuess.value.length > 5) {
-		errorAlarm();
-	} else if(isValidWord()) {
-		playerGuess.style.color = '#90EE90';
-		button.removeAttribute('disabled');
-	} else if(checkInputLength()) {
-		playerGuess.style.color = '#FF0000';
-		message.innerHTML = 'Unknown word. Choose a different common 5 letter word for them to guess';
-		button.setAttribute('disabled', 'disabled');
-	} else {
-		playerGuess.style.color = defaultStatus;
-		message.innerHTML = 'Enter a common 5 letter word for them to guess';
-		button.setAttribute('disabled', 'disabled');
-	}
+  if(playerGuess.value.length > 5) {
+    errorAlarm();
+  } else if(isValidWord()) {
+    playerGuess.style.color = '#90EE90';
+    button.removeAttribute('disabled');
+  } else if(checkInputLength()) {
+    playerGuess.style.color = '#FF0000';
+    message.innerHTML = 'Unknown word. Choose a different common 5 letter word for them to guess';
+    button.setAttribute('disabled', 'disabled');
+  } else {
+    playerGuess.style.color = defaultStatus;
+    message.innerHTML = 'Enter a common 5 letter word for them to guess';
+    button.setAttribute('disabled', 'disabled');
+  }
 }
 
 
 function validatePlayerPickGuess() {
-	if(playerGuess.value.length > 5) {
-		errorAlarm();
-	} else if(isValidWord()) {
-		playerGuess.style.color = '#90EE90';
-		button.removeAttribute('disabled');
-	} else if(checkInputLength()) {
-		playerGuess.style.color = '#FF0000';
-		message.innerHTML = 'Unknown word. Choose a different common 5 letter word to guess';
-		button.setAttribute('disabled', 'disabled');
-	} else {
-		playerGuess.style.color = defaultStatus;
-		message.innerHTML = 'Enter a common 5 letter word to guess';
-		button.setAttribute('disabled', 'disabled');
-	}
+  if(playerGuess.value.length > 5) {
+    errorAlarm();
+  } else if(isValidWord()) {
+    playerGuess.style.color = '#90EE90';
+    button.removeAttribute('disabled');
+  } else if(checkInputLength()) {
+    playerGuess.style.color = '#FF0000';
+    message.innerHTML = 'Unknown word. Choose a different common 5 letter word to guess';
+    button.setAttribute('disabled', 'disabled');
+  } else {
+    playerGuess.style.color = defaultStatus;
+    message.innerHTML = 'Enter a common 5 letter word to guess';
+    button.setAttribute('disabled', 'disabled');
+  }
 }
 
 function narrowDownWordList() {
-	let wordMap = new Map();
-	for (let word of wordList) {
-		let firstLetter = word.charAt(0);
-		// Save to map
-		if (wordMap.has(firstLetter)) {
-			wordMap.get(firstLetter).push(word);
-		} else {
-			let newWordList = [];
-			newWordList.push(word);
-			wordMap.set(firstLetter, newWordList);
-		}
-	}
-	return wordMap.get(playerBaseWord[0]);
+  let wordMap = new Map();
+  for (let word of wordList) {
+    let firstLetter = word.charAt(0);
+    // Save to map
+    if (wordMap.has(firstLetter)) {
+      wordMap.get(firstLetter).push(word);
+    } else {
+      let newWordList = [];
+      newWordList.push(word);
+      wordMap.set(firstLetter, newWordList);
+    }
+  }
+  return wordMap.get(playerBaseWord[0]);
 }
 
 function computerPickGuess() {
-	let list = narrowDownWordList();
-	let word = list[Math.floor(Math.random() * list.length)];
-	while(computerGuessedWords.includes(word)) {
-		word = list[Math.floor(Math.random() * list.length)];
-	}
-	computerGuessedWords.push(word);
-	return word;
+  let list = narrowDownWordList();
+  let word = list[Math.floor(Math.random() * list.length)];
+  while(computerGuessedWords.includes(word)) {
+    word = list[Math.floor(Math.random() * list.length)];
+  }
+  computerGuessedWords.push(word);
+  return word;
 }
 
 function compareIfWon() {
-	computerWon = (computerGuess.value === playerBaseWord);
-	playerWon = (playerGuess.value.toUpperCase() === computerBaseWord);
+  computerWon = (computerGuess.value === playerBaseWord);
+  playerWon = (playerGuess.value.toUpperCase() === computerBaseWord);
 }
 
 function countSimilarLetters(guessWord, baseWord) {
-	let count = 0;
-	let baseArr = baseWord.split('');
-	for(let guessLetter of guessWord) {
-		for(let baseLetter of baseArr) {
-			if(guessLetter === baseLetter) {
-				count += 1;
-				baseArr.splice(baseArr.indexOf(baseLetter), 1);
-				break;
-			}
-		}
-	}
-	return count;
+  let count = 0;
+  let baseArr = baseWord.split('');
+  for(let guessLetter of guessWord) {
+    for(let baseLetter of baseArr) {
+      if(guessLetter === baseLetter) {
+        count += 1;
+        baseArr.splice(baseArr.indexOf(baseLetter), 1);
+        break;
+      }
+    }
+  }
+  return count;
 }
 
 function renderPlayerList() {
-	playerGuessList.innerHTML = playerHistoryGuess.length > 0 ? generatePlayerList() : `<p>No guesses made</p>`;
+  playerGuessList.innerHTML = playerHistoryGuess.length > 0 ? generatePlayerList() : `<p>No guesses made</p>`;
 }
 
 function renderComputerList() {
-	computerGuessList.innerHTML = computerHistoryGuess.length > 0 ? generateComputerList() : `<p>No guesses made</p>`;
+  computerGuessList.innerHTML = computerHistoryGuess.length > 0 ? generateComputerList() : `<p>No guesses made</p>`;
 }
 
 function addToPlayerList(guessWord) {
-	playerHistoryGuess.push(`Your guess: <span style="color: #ff3963">${guessWord}</span> <span style="color: black">|</span>  
-		Letters in common: <span style="color: #ff3963">${playerSimilarLetters}</span>`);
-	renderPlayerList();
+  playerHistoryGuess.push(`Your guess: <span style="color: #ff3963">${guessWord}</span> <span style="color: black">|</span>  
+    Letters in common: <span style="color: #ff3963">${playerSimilarLetters}</span>`);
+  renderPlayerList();
 }
 
 function addToComputerList(guessWord) {
-	computerHistoryGuess.push(`Your guess: <span style="color: #ff3963">${guessWord}</span> <span style="color: black">|</span>  
-		Letters in common: <span style="color: #ff3963">${computerSimilarLetters}</span>`);
-	renderComputerList();
+  computerHistoryGuess.push(`Your guess: <span style="color: #ff3963">${guessWord}</span> <span style="color: black">|</span>  
+    Letters in common: <span style="color: #ff3963">${computerSimilarLetters}</span>`);
+  renderComputerList();
 }
 
 function generatePlayerList() {
-	const list = playerHistoryGuess.map(element => `<li>${element}</li>`).join('\n');
-	return list;
+  const list = playerHistoryGuess.map(element => `<li>${element}</li>`).join('\n');
+  return list;
 }
 
 function generateComputerList() {
-	const list = computerHistoryGuess.map(element => `<li>${element}</li>`).join('\n');
-	return list;
+  const list = computerHistoryGuess.map(element => `<li>${element}</li>`).join('\n');
+  return list;
 }
 
 function isValidWord() {
-	return wordList.includes(playerGuess.value.substring(0, 5));
+  return wordList.includes(playerGuess.value.substring(0, 5));
 }
 
 function validateInput() {
-	playerGuess.value = playerGuess.value.toUpperCase();
-	if(isBegin) {
-		validatePlayerPickGuess();
-	} else {
-		validatePlayerPickWord();
-	}
-	errorAlarm();
+  playerGuess.value = playerGuess.value.toUpperCase();
+  if(isBegin) {
+    validatePlayerPickGuess();
+  } else {
+    validatePlayerPickWord();
+  }
+  errorAlarm();
 }
 
 function addWonMessage() {
-	if(playerWon) {
-		message.innerHTML = `<span style="text-transform: uppercase">Human wins in ${count} turns</span>`;
-	}
-	if(computerWon) {
-		message.innerHTML = `<span style="text-transform: uppercase">Computer wins in ${count} turns</span>`;
-	}
+  if(playerWon) {
+    message.innerHTML = `<span style="text-transform: uppercase">Human wins in ${count} turns</span>`;
+  }
+  if(computerWon) {
+    message.innerHTML = `<span style="text-transform: uppercase">Computer wins in ${count} turns</span>`;
+  }
 }
 
 function addWrongMessage() {
-	message.innerHTML = 'Wrong word! Please guess again!';
+  message.innerHTML = 'Wrong word! Please guess again!';
 }
 
 function removeMessage() {
-	message.innerHTML = '\b';
+  message.innerHTML = '\b';
 }
 
 function checkInputLength() {
-	return playerGuess.value.length === 5;
+  return playerGuess.value.length === 5;
 }
 
 function errorAlarm() {
-	if(playerGuess.value.length > 5) {
-		addInputErrorMessage();
-		setTimeout(deleteLongerInput, 100);
-	} else {
-		removeInputErrorMessage();
-	}
+  if(playerGuess.value.length > 5) {
+    addInputErrorMessage();
+    setTimeout(deleteLongerInput, 100);
+  } else {
+    removeInputErrorMessage();
+  }
 }
 
 function deleteLongerInput() {
-	playerGuess.value = playerGuess.value.substring(0, 5);
+  playerGuess.value = playerGuess.value.substring(0, 5);
 }
 
 function addInputErrorMessage() {
-	errorMessage.innerHTML = 'Please enter 5 letters!';
+  errorMessage.innerHTML = 'Please enter 5 letters!';
 }
 
 function removeInputErrorMessage() {
-	errorMessage.innerHTML = '\b';
+  errorMessage.innerHTML = '\b';
 }
 
 // function disabledButton() {
-// 	if(checkInputLength()) {
-// 		button.removeAttribute('disabled');
-// 	} else {
-// 		button.setAttribute('disabled', 'disabled');
-// 	}
+//  if(checkInputLength()) {
+//    button.removeAttribute('disabled');
+//  } else {
+//    button.setAttribute('disabled', 'disabled');
+//  }
 // }
 
 function resetButton() {
-	button.innerHTML = 'RESET';
-	button.removeAttribute('disabled');
-	addResetEvent();
+  button.innerHTML = 'RESET';
+  button.removeAttribute('disabled');
+  addResetEvent();
 }
 
 function clear() {
-	playerGuess.value = '';
-	button.setAttribute('disabled', 'disabled');
+  playerGuess.value = '';
+  button.setAttribute('disabled', 'disabled');
 }
 
 function clearComputerInput(){
-	computerGuess.value = '';
-	button.setAttribute('disabled', 'disabled');
+  computerGuess.value = '';
+  button.setAttribute('disabled', 'disabled');
 }
 
 function addInputEvent() {
-	document.querySelector('.player-guess').addEventListener('input', validateInput);
-	document.querySelector('.player-guess').addEventListener('keydown', pressEnterToGuess);
+  document.querySelector('.player-guess').addEventListener('input', validateInput);
+  document.querySelector('.player-guess').addEventListener('keydown', pressEnterToGuess);
 }
 
 function pressEnterToGuess() {
-	if(!button.disabled && window.event.keyCode === 13 && checkInputLength()) {
-		guess();
-	}
+  if(!button.disabled && window.event.keyCode === 13 && checkInputLength()) {
+    guess();
+  }
 }
 
 function addGuessEvent() {
-	button.addEventListener('click', guess);
+  button.addEventListener('click', guess);
 }
 
 function addResetEvent() {
-	button.addEventListener('click', resetGame);
+  button.addEventListener('click', resetGame);
 }
 
 resetGame();

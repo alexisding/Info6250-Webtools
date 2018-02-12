@@ -151,164 +151,164 @@ const guessList = document.querySelector('.guess-list');
 const message = document.querySelector('.message');
 
 function start() {
-	removeMessage();
-	validateGuess();
-	compareIfWon(baseWord, guessWord.value);
-	similarLetters = countSimilarLetters(guessWord.value, baseWord);
-	if(!won) {
-		count += 1;
-		addToList(guessWord.value);
-		turns.textContent = count;
-		addWrongMessage();
-		clear();
-	} else {
-		addWonMessage();
-		resetButton();
-	}
+  removeMessage();
+  validateGuess();
+  compareIfWon(baseWord, guessWord.value);
+  similarLetters = countSimilarLetters(guessWord.value, baseWord);
+  if(!won) {
+    count += 1;
+    addToList(guessWord.value);
+    turns.textContent = count;
+    addWrongMessage();
+    clear();
+  } else {
+    addWonMessage();
+    resetButton();
+  }
 }
 
 function resetGame() {
-	baseWord = pickWord(wordList);
-	console.log(baseWord);
-	historyGuess = [];
-	count = 0;
-	turns.textContent = count;
-	render();
-	won = false;
-	guessButton.innerHTML = 'GUESS';
-	removeMessage();
-	clear();
+  baseWord = pickWord(wordList);
+  console.log(baseWord);
+  historyGuess = [];
+  count = 0;
+  turns.textContent = count;
+  render();
+  won = false;
+  guessButton.innerHTML = 'GUESS';
+  removeMessage();
+  clear();
 }
 
 function pickWord(wordList) {
-	return wordList[Math.floor( Math.random() * wordList.length)];
+  return wordList[Math.floor( Math.random() * wordList.length)];
 }
 
 function validateGuess() {
-	if(guessWord.value.length > 5) {
-		errorAlarm();
-	} else if(isValidWord()) {
-		guessWord.style.color = '#90EE90';
-		guessButton.removeAttribute('disabled');
-	} else if(checkInputLength()) {
-		guessWord.style.color = '#FF0000';
-		guessButton.setAttribute('disabled', 'disabled');
-	} else {
-		guessWord.style.color = defaultStatus;
-		guessButton.setAttribute('disabled', 'disabled');
-	}
+  if(guessWord.value.length > 5) {
+    errorAlarm();
+  } else if(isValidWord()) {
+    guessWord.style.color = '#90EE90';
+    guessButton.removeAttribute('disabled');
+  } else if(checkInputLength()) {
+    guessWord.style.color = '#FF0000';
+    guessButton.setAttribute('disabled', 'disabled');
+  } else {
+    guessWord.style.color = defaultStatus;
+    guessButton.setAttribute('disabled', 'disabled');
+  }
 }
 
 function isValidWord() {
-	return wordList.includes(guessWord.value.substring(0, 5));
+  return wordList.includes(guessWord.value.substring(0, 5));
 }
 
 function compareIfWon(baseWord, guessWord) {
-	won = (baseWord === guessWord.toUpperCase());
-	return won;
+  won = (baseWord === guessWord.toUpperCase());
+  return won;
 }
 
 function countSimilarLetters(guessWord, baseWord) {
-	let count = 0;
-	let baseArr = baseWord.split('');
-	for(let guessLetter of guessWord) {
-		for(let baseLetter of baseArr) {
-			if(guessLetter === baseLetter) {
-				count += 1;
-				baseArr.splice(baseArr.indexOf(baseLetter), 1);
-				break;
-			}
-		}
-	}
-	return count;
+  let count = 0;
+  let baseArr = baseWord.split('');
+  for(let guessLetter of guessWord) {
+    for(let baseLetter of baseArr) {
+      if(guessLetter === baseLetter) {
+        count += 1;
+        baseArr.splice(baseArr.indexOf(baseLetter), 1);
+        break;
+      }
+    }
+  }
+  return count;
 }
 
 function render() {
-	guessList.innerHTML = generateList();
+  guessList.innerHTML = generateList();
 }
 
 function addToList(guessWord) {
-	historyGuess.push(`Your guess: <span style="color: #ff3963">${guessWord}</span> <span style="color: black">|</span>  
-		Letters in common: <span style="color: #ff3963">${similarLetters}</span>`);
-	render();
+  historyGuess.push(`Your guess: <span style="color: #ff3963">${guessWord}</span> <span style="color: black">|</span>  
+    Letters in common: <span style="color: #ff3963">${similarLetters}</span>`);
+  render();
 }
 
 function generateList() {
-	const list = historyGuess.map(element => `<li>${element}</li>`).join('\n');
-	return list;
+  const list = historyGuess.map(element => `<li>${element}</li>`).join('\n');
+  return list;
 }
 
 function validateInput() {
-	guessWord.value = guessWord.value.toUpperCase();
-	validateGuess();
-	errorAlarm();
+  guessWord.value = guessWord.value.toUpperCase();
+  validateGuess();
+  errorAlarm();
 }
 
 function addWonMessage() {
-	message.innerHTML = 'Congratulations! You WON!';
+  message.innerHTML = 'Congratulations! You WON!';
 }
 
 function addWrongMessage() {
-	message.innerHTML = 'Wrong word! Please guess again!';
+  message.innerHTML = 'Wrong word! Please guess again!';
 }
 
 function removeMessage() {
-	message.innerHTML = '\b';
+  message.innerHTML = '\b';
 }
 
 function checkInputLength() {
-	return guessWord.value.length === 5;
+  return guessWord.value.length === 5;
 }
 
 function errorAlarm() {
-	if(guessWord.value.length > 5) {
-		addInputErrorMessage();
-		setTimeout(deleteLongerInput, 50);
-	} else {
-		removeInputErrorMessage();
-	}
+  if(guessWord.value.length > 5) {
+    addInputErrorMessage();
+    setTimeout(deleteLongerInput, 50);
+  } else {
+    removeInputErrorMessage();
+  }
 }
 
 function deleteLongerInput() {
-	guessWord.value = guessWord.value.substring(0, 5);
+  guessWord.value = guessWord.value.substring(0, 5);
 }
 
 function addInputErrorMessage() {
-	message.innerHTML = 'Please enter 5 letters!';
+  message.innerHTML = 'Please enter 5 letters!';
 }
 
 function removeInputErrorMessage() {
-	message.innerHTML = '\b';
+  message.innerHTML = '\b';
 }
 
 function resetButton() {
-	guessButton.innerHTML = 'RESET';
-	guessButton.removeAttribute('disabled');
-	addResetEvent();
+  guessButton.innerHTML = 'RESET';
+  guessButton.removeAttribute('disabled');
+  addResetEvent();
 }
 
 function clear() {
-	guessWord.value = '';
-	guessButton.setAttribute('disabled', 'disabled');
+  guessWord.value = '';
+  guessButton.setAttribute('disabled', 'disabled');
 }
 
 function addInputEvent() {
-	document.querySelector('.guess').addEventListener('input', validateInput);
-	document.querySelector('.guess').addEventListener('keydown', pressEnterToGuess);
+  document.querySelector('.guess').addEventListener('input', validateInput);
+  document.querySelector('.guess').addEventListener('keydown', pressEnterToGuess);
 }
 
 function pressEnterToGuess() {
-	if(!guessButton.disabled && window.event.keyCode === 13 && guessWord.value.length === 5) {
-		start();
-	}
+  if(!guessButton.disabled && window.event.keyCode === 13 && guessWord.value.length === 5) {
+    start();
+  }
 }
 
 function addGuessEvent() {
-	guessButton.addEventListener('click', start);
+  guessButton.addEventListener('click', start);
 }
 
 function addResetEvent() {
-	guessButton.addEventListener('click', resetGame);
+  guessButton.addEventListener('click', resetGame);
 }
 
 resetGame();
