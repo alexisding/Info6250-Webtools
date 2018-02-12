@@ -36,7 +36,31 @@ while (!won) { // Will loop over block until condition isn't true
 console.log(`Found ${wordInfo.word} in ${history.count} turns`);
 
 // YOU MAY ADD YOUR OWN FUNCTIONS (ONLY FUNCTIONS) BELOW THIS
+function countSimilarLetters(guess, wordInfo) {
+  let count = 0;
+  let baseArr = wordInfo.word.split("");
+  for (let guessLetter of guess) {
+    for (let baseLetter of wordInfo.word) {
+      if (guessLetter === baseLetter) {
+        count += 1;
+        baseArr.splice(baseArr.indexOf(baseLetter), 1);
+        break;
+      }
+    }
+  }
+  return count;
+}
 
+function compareIfWon(wordInfo, guess) {
+  if (wordInfo.word.length === guess.length) {
+    for (let i = 0; i < wordInfo.word.length; i++) {
+      if (wordInfo.word[i] !== guess[i]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
 // YOU MAY ADD YOUR OWN FUNCTIONS (ONLY FUNCTIONS) ABOVE THIS
 
 function thinkAbout( wordInfo ) {
@@ -45,7 +69,7 @@ function thinkAbout( wordInfo ) {
   // return anything you want, even nothing
 
   // EDIT BELOW THIS
-
+  // Added this part in guessing-advance.js file.
   // EDIT ABOVE THIS
 }
 
@@ -55,7 +79,7 @@ function pickGuess( wordInfo, history ) {
   // along with any startup info that was stored in history.info
 
   // EDIT BELOW THIS
-
+  return wordInfo.allWords[history.count - 1];
   // EDIT ABOVE THIS
 }
 
@@ -65,7 +89,10 @@ function compareLetters( guess, wordInfo ) {
   // You may add info in result beyond what is needed if you wish
 
   // EDIT BELOW THIS
-
+  result.won = compareIfWon(wordInfo, guess);
+  result.similar = countSimilarLetters(guess, wordInfo);
+  result.word = guess;
+  return result;
   // EDIT ABOVE THIS
 }
 
