@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GUESS THE WORD</title>
+    <link rel="stylesheet" href="./stylesheets/index.css"/>
+  </head>
+  <body>
+    <h1 class="head">Guess the Word</h1>
+    <div class="status-message">
+      <h4 class="turns-status">
+        Current turns:
+        <span id="turns">0</span>
+      </h4>
+      <h3 class="message"></h3>
+    </div>
+    <div class="form">
+      <input class="guess" type="text" name="guess" placeholder="Please enter a word" value="">
+      <br>
+      <button id="guess-button" type="button" disabled>GUESS</button>
+    </div>
+    <div class="guess-history">
+      <h3>Your Guess History:</h3>
+      <ul class="guess-list"></ul>
+    </div>
+    <script src="./javascripts/index.js"></script>
+  </body>
+</html>
