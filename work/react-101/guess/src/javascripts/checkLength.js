@@ -1,3 +1,3 @@
 export const checkLength = (guessWord) => {
-	return guessWord.length === 5;
+  return guessWord.length === 5;
 };

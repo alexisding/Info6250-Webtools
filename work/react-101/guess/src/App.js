@@ -126,22 +126,22 @@ class App extends Component {
           <GuessHeader title="Guess the Word" />
         </header>
         <div className="status-message">
-				  <GuessTurns turns={this.state.currentTurns} />
-			    <GuessMessage message={this.state.message} />
-		    </div>
+          <GuessTurns turns={this.state.currentTurns} />
+          <GuessMessage message={this.state.message} />
+        </div>
         <div className="form">
-			    <GuessWords
+          <GuessWords
             guessWord={this.state.guessWord}
             onCount={this.start}
             onUpdateWord={this.updateWord}
             isValid={this.state.isDisabled}
           />
-			    <GuessButton
+          <GuessButton
             text={this.state.buttonText}
             onClick={this.onClick}
             disabled={this.state.isDisabled}
           />
-		    </div>
+        </div>
         <div>
           <GuessList history={this.state.history} />
         </div>
