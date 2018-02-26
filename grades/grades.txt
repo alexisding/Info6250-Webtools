@@ -1,0 +1,46 @@
+student: Zihan Ding
+repo: work-alexisding
+
+task: work/js-101
+code-runs: A
+code-works: A, -1
+follows-directions: A
+pr-correct: A
+js-practices: A, +1
+task-grade: A
+
+task: work/js-102
+code-runs: A
+code-works: A
+follows-directions: A
+pr-correct: A
+js-practices: A
+task-grade: A
+
+task: work/js-102-extra
+code-runs: A
+code-works: A
+follows-directions: A
+pr-correct: A
+js-practices: A
+task-grade: A
+
+task: exams/exam01/part01
+code-runs: A
+code-works: A
+follows-directions: A
+pr-correct: A
+html-practices: A
+css-practices: A
+js-practices: A
+task-grade: A
+
+task: exams/exam01/part02
+code-runs: A
+code-works: A
+follows-directions: A
+pr-correct: A
+html-practices: A
+css-practices: A
+js-practices: A
+task-grade: A
