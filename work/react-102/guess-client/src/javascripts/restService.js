@@ -1,15 +1,15 @@
 export const guessStatus = (guessWord, secretId) => {
-	return fetch('/checkGuess', {
-		method: 'POST',
-		body: JSON.stringify({guessWord, secretId})
-	})
-	.then(response => (response.ok ? response.json() : Promise.reject(response.status())))
-	.catch((status) => {
-		switch(status) {
-			case 401: return Promise.reject('post-length-fail');
-			default: return Promise.reject('post-fail');
-		}
-	});
+  return fetch('/checkGuess', {
+    method: 'POST',
+    body: JSON.stringify({guessWord, secretId})
+  })
+  .then(response => (response.ok ? response.json() : Promise.reject(response.status())))
+  .catch((status) => {
+    switch(status) {
+      case 401: return Promise.reject('post-length-fail');
+      default: return Promise.reject('post-fail');
+    }
+  });
 };
 
 export const getList = () => {

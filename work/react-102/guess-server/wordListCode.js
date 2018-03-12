@@ -179,22 +179,22 @@ const wordListCode = {
   },
 
   checkLength: function(guessWord) {
-	  return guessWord.length === 5;
+    return guessWord.length === 5;
   },
 
   countSimilarLetters: function(guessWord) {
-	  let count = 0;
-	  let baseArr = secretWord.split('');
-	  for(let guessLetter of guessWord) {
-		  for(let baseLetter of baseArr) {
-			  if(guessLetter === baseLetter) {
-				  count += 1;
-				  baseArr.splice(baseArr.indexOf(baseLetter), 1);
-				  break;
-			  }
-		  }
-	  }
-	  return count;
+    let count = 0;
+    let baseArr = secretWord.split('');
+    for(let guessLetter of guessWord) {
+      for(let baseLetter of baseArr) {
+        if(guessLetter === baseLetter) {
+          count += 1;
+          baseArr.splice(baseArr.indexOf(baseLetter), 1);
+          break;
+        }
+      }
+    }
+    return count;
   },
 
   findIdByWord: function(word) {
