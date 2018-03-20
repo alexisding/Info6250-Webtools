@@ -1,6 +1,7 @@
 ## Add entries to this file to have git not try to add them
 #
 node_modules/
+.idea/
 
 # Sekrit stuff #
 ################
