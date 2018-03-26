@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: aliceblue;
+}
+
+.header {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 44px;
+  color: #53a1ff;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+
+.status-message, .guess-history {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.turns-status {
+  font-size: 22px;
+  font-family: 'Arial Black', Gadget, sans-serif;
+}
+
+.turns, .secret {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #ff3963;
+}
+
+.turns {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.message {
+  font-size: 22px;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  color: #ff3963;
+}
+
+.start-button, .status-message > button {
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: mintcream;
+  background-color: #b5e3ff;
+  border-radius: 10px;
+}
+
+.start-button:disabled {
+  color: gainsboro;
+  background-color: aliceblue;
+}
+
+.start-button:hover:enabled {
+  cursor: pointer;
+  background-color: azure;
+  color: #b5e3ff;
+}
+
+.guess-history > h3 {
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 22px;
+  text-decoration: underline;
+}
+
+.player {
+  padding-left: 10px;
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 18px;
+}
+
+.columns > .alfred {
+  color: #9ACD32;
+}
+
+.columns > .barbara {
+  color: #FFD700;
+}
+
+.columns {
+  padding-top: 30px;
+  padding-left: 280px;
+  display: inline-block;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-weight: lighter;
+  flex-direction: column;
+  column-count: 2;
+  column-gap: 20px;
+  width: 80%;
+}
+
+.guess-history {
+  color: cornflowerblue;
+}
+
+.guess-list > li {
+  list-style-type: none;
+}
