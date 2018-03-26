@@ -1,7 +1,7 @@
 {
-	"port": {
-  	"alfred": "http://localhost:8080",
-  	"barbara": "http://localhost:8888"
+  "port": {
+    "alfred": "http://localhost:8080",
+    "barbara": "http://localhost:8888"
   },
 
   "message": {
@@ -15,6 +15,6 @@
   },
 
   "textStyle": {
-  	"textStyle": "#ff3963"
+    "textStyle": "#ff3963"
   }
 }
