@@ -1,0 +1,20 @@
+{
+  "port": {
+    "alfred": "http://localhost:8080",
+    "barbara": "http://localhost:8888"
+  },
+
+  "message": {
+    "alfredWon": "Congratulations! ALFRED WON!",
+    "barbaraWon": "Congratulations! BARBARA WON!"
+  },
+
+  "buttonText": {
+    "start": "START",
+    "reset": "RESET"
+  },
+
+  "textStyle": {
+    "textStyle": "#ff3963"
+  }
+}
