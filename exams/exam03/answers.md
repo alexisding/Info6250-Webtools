@@ -29,10 +29,14 @@ Direct DOM manipulation makes the whole process inefficient and slow. Each manip
 ### Answer:
 
 ##### Composition:
-When a Field’s type is a class, the field will hold a reference to another object. Composition is an instance of an object has references to instances of other objects. It is when the class uses another object to provide some or all of its functionality.
+When a Field’s type is a class, the field will hold a reference to another object. Composition is that one object would have a property whose value is a reference to another object. It is when the class uses another object to provide some or all of its functionality.
 
 ##### Composition over inheritance:
-Javascript doesn't have multiple inheritance. Composition, however, can give the functionality. There are no limits on combining functionality.
+* Javascript doesn't have multiple inheritance. Composition, however, can give the functionality. There are no limits on combining functionality.
+
+* Inheritance can get access to the base's internal implementation; composition can interact only with the object's public interface.
+
+* Inheritance makes the interface becomes your interface. Client code will depend on that interface. Composition makes the private reference under your control. You can decide what interface you want to expose.
 
 ## Question:  Why can code using 'import' not be run directly by NodeJS?  
 
