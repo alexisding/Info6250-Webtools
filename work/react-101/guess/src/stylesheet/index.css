@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: aliceblue;
+}
+
+.header {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 44px;
+  color: #53a1ff;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+
+.status-message, .form, .guess-history {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.turns-status {
+  font-size: 22px;
+  font-family: 'Arial Black', Gadget, sans-serif;
+}
+
+.turns {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #ff3963;
+}
+
+.message {
+  font-size: 18px;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  color: #ff3963;
+}
+
+.guess {
+  width: 250px;
+  height: 40px;
+  font-size: 18px;
+  border: #53a1ff solid 2px;
+  border-radius: 10px;
+  background-color: mintcream;
+}
+
+.guess-button {
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: mintcream;
+  background-color: #b5e3ff;
+  border-radius: 10px;
+}
+
+.guess-button:disabled {
+  color: gainsboro;
+  background-color: aliceblue;
+}
+
+.guess-button:hover:enabled {
+  cursor: pointer;
+  background-color: azure;
+  color: #b5e3ff;
+}
+
+.guess-history > h3 {
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 22px;
+  text-decoration: underline;
+}
+
+.guess-list {
+  padding-top: 30px;
+  list-style: none;
+  display: inline-block;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-weight: lighter;
+  flex-direction: column;
+  column-count: 2;
+  column-gap: 20px;
+  width: 80%;
+  color: cornflowerblue;
+}

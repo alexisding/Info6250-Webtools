@@ -1,0 +1,15 @@
+{
+  "message": {
+    "wonMessage": "Congratulations! You WON!",
+    "wrongMessage": "Wrong word! Please guess again!"
+  },
+
+  "buttonText": {
+    "guess": "GUESS",
+    "reset": "RESET"
+  },
+
+  "textStyle": {
+    "textStyle": "#ff3963"
+  }
+}
